@@ -2,10 +2,9 @@ package com.example.servingwebcontent.persistence;
 
 import javax.persistence.*;
 
-public class ToDoListEntity {
 
 @Entity( name = "ToDoList")
-    public class PersonEntity {
+public class ToDoListEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +15,15 @@ public class ToDoListEntity {
     private String description;
 
     @Column( name = "complete")
-    private boolean complete;
+    private Boolean complete;
 
 
-    public PersonEntity(String description, boolean complete) {
+    public ToDoListEntity(String description, Boolean complete) {
         this.description = description;
         this.complete = complete;
     }
 
-    protected PersonEntity() {
+    protected ToDoListEntity() {
 
     }
 
@@ -40,14 +39,14 @@ public class ToDoListEntity {
         this.description = description;
     }
 
-    public boolean isComplete() {
+    public boolean getComplete() {
         return complete;
     }
 
-    public void setComplete(boolean complete) {
+    public void setComplete(Boolean complete) {
         this.complete = complete;
     }
 }
 
 
-}
+
