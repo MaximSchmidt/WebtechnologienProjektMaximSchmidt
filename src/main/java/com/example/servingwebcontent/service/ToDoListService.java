@@ -27,6 +27,11 @@ public class ToDoListService {
                 .collect(Collectors.toList());
     }
 
+    public ToDoList findById(Long id){
+        var todolistEntity = toDoListRepository.findById(id);
+        return todolistEntity.map(this::transformEntity).orElse(null);
+    }
+
     public ToDoList create(ToDoListCreateRequest request) {
         var todolistEntity = new ToDoListEntity(request.getDescription(), request.isComplete());
         todolistEntity = toDoListRepository.save(todolistEntity);

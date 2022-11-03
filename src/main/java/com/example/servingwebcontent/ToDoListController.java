@@ -6,10 +6,7 @@ import com.example.servingwebcontent.persistence.ToDoListEntity;
 import com.example.servingwebcontent.persistence.ToDoListRepository;
 import com.example.servingwebcontent.service.ToDoListService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,6 +25,13 @@ public class ToDoListController {
     @GetMapping(path = "/api/v1/todolist")
     public ResponseEntity<List<ToDoList>> fetchToDoList(){return ResponseEntity.ok(ToDoListService.findAll());
     }
+
+    @GetMapping(path = "/api/v1/todolist/{id}")
+    public ResponseEntity<ToDoList> fetchToDoListByID(@PathVariable Long id){
+        var todolist =  ToDoListService.findById(id);
+        return todolist !=null? ResponseEntity.ok(todolist) : ResponseEntity.notFound().build();
+    }
+
 
     @PostMapping(path = "/api/v1/todolist")
     public ResponseEntity<Void> creatToDoList(@RequestBody ToDoListCreateRequest request) throws URISyntaxException {
