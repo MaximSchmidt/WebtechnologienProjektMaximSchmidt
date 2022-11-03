@@ -1,11 +1,11 @@
 package com.example.servingwebcontent.api;
 
-public class ToDoListCreateRequest {
+public class ToDoListManipulationRequest {
 
     private String description;
     private boolean complete;
 
-    public ToDoListCreateRequest(String description, boolean complete) {
+    public ToDoListManipulationRequest(String description, boolean complete) {
         this.description = description;
         this.complete = complete;
     }
