@@ -1,6 +1,7 @@
 package com.example.servingwebcontent.service;
 
 import com.example.servingwebcontent.api.ToDoList;
+import com.example.servingwebcontent.api.ToDoListCreateRequest;
 import com.example.servingwebcontent.persistence.ToDoListEntity;
 import com.example.servingwebcontent.persistence.ToDoListRepository;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,22 @@ public class ToDoListService {
     public List<ToDoList> findAll() {
         List<ToDoListEntity> todoList = toDoListRepository.findAll();
         return todoList.stream()
-                .map(ToDoListEntity -> new ToDoList(
-                        ToDoListEntity.getId(),
-                        ToDoListEntity.getDescription(),
-                        ToDoListEntity.getComplete()
-                ))
+                .map(this::transformEntity)
                 .collect(Collectors.toList());
+    }
+
+    public ToDoList create(ToDoListCreateRequest request) {
+        var todolistEntity = new ToDoListEntity(request.getDescription(), request.isComplete());
+        todolistEntity = toDoListRepository.save(todolistEntity);
+        return transformEntity(todolistEntity);
+    }
+
+    public ToDoList transformEntity(ToDoListEntity todolistEntity) {
+        return new ToDoList(
+                todolistEntity.getId(),
+                todolistEntity.getDescription(),
+                todolistEntity.getComplete()
+        );
     }
 
 }
