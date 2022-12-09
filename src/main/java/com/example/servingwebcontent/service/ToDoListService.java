@@ -33,7 +33,7 @@ public class ToDoListService {
     }
 
     public ToDoList create(ToDoListManipulationRequest request) {
-        var todolistEntity = new ToDoListEntity(request.getDescription(), request.isComplete());
+        var todolistEntity = new ToDoListEntity(request.getTitel(), request.getDescription(), request.getCategory(), request.getDate(), request.getComplete(), request.getPriority());
         todolistEntity = toDoListRepository.save(todolistEntity);
         return transformEntity(todolistEntity);
     }
@@ -44,11 +44,13 @@ public class ToDoListService {
             return null;
         }
         var todolistEntity = todolistEntityOptional.get();
-        todolistEntity.setComplete(request.isComplete());
+        todolistEntity.setTitel(request.getTitel());
         todolistEntity.setDescription(request.getDescription());
+        todolistEntity.setCategory(request.getCategory());
+        todolistEntity.setDate(request.getDate());
+        todolistEntity.setComplete(request.getComplete());
+        todolistEntity.setPriority(request.getPriority());
         todolistEntity = toDoListRepository.save(todolistEntity);
-
-
         return transformEntity(todolistEntity);
     }
 
@@ -69,9 +71,12 @@ public class ToDoListService {
     public ToDoList transformEntity(ToDoListEntity todolistEntity) {
         return new ToDoList(
                 todolistEntity.getId(),
+                todolistEntity.getTitel(),
                 todolistEntity.getDescription(),
-                todolistEntity.getComplete()
-        );
+                todolistEntity.getCategory(),
+                todolistEntity.getDate(),
+                todolistEntity.getComplete(),
+                todolistEntity.getPriority());
     }
 
 }
