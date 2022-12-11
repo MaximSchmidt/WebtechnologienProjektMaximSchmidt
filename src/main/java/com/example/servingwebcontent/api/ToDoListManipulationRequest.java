@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
+
 
 public class ToDoListManipulationRequest {
 
@@ -28,6 +28,7 @@ public class ToDoListManipulationRequest {
         this.priority = priority;
     }
 
+    public ToDoListManipulationRequest(){}
     public String getTitel() {
         return titel;
     }
