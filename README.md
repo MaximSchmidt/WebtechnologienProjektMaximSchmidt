@@ -1,4 +1,9 @@
-# WebtechnologienProjektMaximSchmidt
-
-
-### To-Do-Liste: Mein Projekt wird eine To-Do Liste sein in der man Gegenstände über Texteingabe hinzufügen und über Buttons Gegenstände entfernen, oder priotorisieren kann.
+# Projekt: To-Do-Liste #
+## Maxim Schmidt - 5798425
+## webbasierte Anwendung mit folgenden Funktionen
+#### To-Do-Liste erstellen
+#### To-Do-Liste löschen
+#### To-Do-Liste bearbeiten 
+#### To-Do-Liste priorisieren
+#### To-Do-Liste zurückhollen nach Löschung
+#### To-Do-Liste sortieren nach Keywords
